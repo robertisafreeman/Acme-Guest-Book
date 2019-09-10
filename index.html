@@ -16,10 +16,44 @@
             const { Component } = React;
 
             class App extends Component{
+                constructor(){
+                    super();
+                    this.state ={
+                        users: [ 'One', 'Two']
+                    }
+                this.renderUsers = this.renderUsers.bind(this);
+                }
+
+                componentDidMount(){
+
+                }
+
+                renderUsers(users){
+                    return (
+                        <ul>
+                        {users.map(user=>{<li>{user}</li>})}
+                        </ul>
+                    )
+
+                }
+
                 render(){
+
+                    const {users} = this.state;
+                    const {renderUsers} = this;
                     return (
                         <div>
-                            Some text inside
+                            <form>
+                                <input value ='' name ='nameInput' />
+                                <button >Add Name </button>
+                            </form>
+
+                                <ul>
+                                {
+                                    users.map(user=><li>{user}</li>)
+                                }
+                                </ul>
+
                         </div>
                     )
                 }
