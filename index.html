@@ -3,16 +3,18 @@
             <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
             <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
             <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js'></script>
-            <script src='https://cdnjs.cloudflare.com/ajax/libs/babel-core/6.1.19/browser.js'></script>
+            <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
     </head>
-    <body type='text/babel'>
+    <body>
         <h1>Hello World</h1>
+        <h2>Just checking</h2>
         <div id='root'></div>
-        <script>
+        <script type = 'text/babel'>
             const root = document.querySelector('#root');
             const { render } = ReactDOM;
             const { Component } = React;
-            
+
             class App extends Component{
                 render(){
                     return (

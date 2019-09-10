@@ -1,7 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 
-const readFileJSON = (file) => {
+const readFile = (file) => {
     return new Promise((res, rej)=> {
         fs.readFile(file, (err, data) => {
             if(err) {
@@ -14,11 +14,19 @@ const readFileJSON = (file) => {
 };
 
 const server = http.createServer( async (req, res)=> {
-    console.log(req.url)
+    console.log("this is what req is" + req.url);
+
     try{
-        const guests = await readFileJSON('./users.json');
+        if(req.url === '/'){
+            const guests = await readFile('./index.html');
+            res.write(guests);
+            res.end();
+        } else if (req.url === '/api/users'){
+            const guests = await readFile('./users.json');
         res.write(guests);
         res.end();
+        }
+
     }
     catch(ex){
         res.statusCode = 500;
