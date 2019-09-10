@@ -1,21 +1,22 @@
 const http = require('http');
 const fs = require('fs');
 
-const readFile = (file) => {
+const readFileJSON = (file) => {
     return new Promise((res, rej)=> {
         fs.readFile(file, (err, data) => {
             if(err) {
-                reject(err);
+                rej(err);
             } else {
-                resolve(data.toString());
+                res(data.toString());
             };
         });
     });
 };
 
 const server = http.createServer( async (req, res)=> {
+    console.log(req.url)
     try{
-        const guests = (await readFile('./users.json'));
+        const guests = await readFileJSON('./users.json');
         res.write(guests);
         res.end();
     }
